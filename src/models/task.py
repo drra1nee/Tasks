@@ -32,12 +32,12 @@ class Task:
         """Хеш на основе идентификатора"""
         return hash(self.id)
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         """Превращает задачу в словарь"""
         return {"id": self.id, "payload": self.payload}
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict) -> "Task":
         """Создает задачу из словаря"""
         if "id" not in data:
             raise ValueError("Словарь должен содержать поле 'id'")
