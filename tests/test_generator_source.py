@@ -27,7 +27,7 @@ def test_get_tasks_is_valid_source():
     source = GeneratorTaskSource(count=3)
     assert isinstance(source, TaskSource)
 
-def test_payload_string_template():
+def test_payload_str_template():
     source = GeneratorTaskSource(count=3, payload_template="task")
     tasks = list(source.get_tasks())
     assert tasks[0].payload == "task_0"
@@ -50,7 +50,7 @@ def test_payload_int_template():
     assert tasks[0].payload == "42_0"
     assert tasks[1].payload == "42_1"
 
-def test_create_generator_source_string():
+def test_create_generator_source_str():
     source = create_generator_source(count=3, payload_type="string")
     assert isinstance(source, GeneratorTaskSource)
     assert source.payload_template == "task"
