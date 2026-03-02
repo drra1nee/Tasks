@@ -3,7 +3,7 @@
 from .contracts.protocol import validate_source
 from .sources.generator_source import GeneratorTaskSource, create_generator_source
 
-def main() -> None:
+def main():
     print("Платформа обработки задач\n")
 
     # Создание источника
