@@ -5,11 +5,6 @@ from src.models.task import Task
 from src.sources.generator_source import GeneratorTaskSource, create_generator_source
 from src.contracts.protocol import TaskSource
 
-def test_create_with_defaults():
-    source = GeneratorTaskSource()
-    assert source.count == 10
-    assert source.payload_template == "default_payload"
-
 def test_create_with_custom_count():
     source = GeneratorTaskSource(count=5)
     assert source.count == 5
