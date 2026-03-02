@@ -19,7 +19,7 @@ class GeneratorTaskSource:
 
     def get_tasks(self) -> Iterator[Task]:
         """Сгенерировать итератор задач"""
-        for i in range(1, self.count):
+        for i in range(self.count):
             payload = self._generate_payload(i)
             yield Task(payload=payload)
 
