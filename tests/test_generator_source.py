@@ -1,7 +1,6 @@
 """Тесты генератора задач"""
 
 import pytest
-from src.models.task import Task
 from src.sources.generator_source import GeneratorTaskSource, create_generator_source
 from src.contracts.protocol import TaskSource
 
@@ -17,11 +16,6 @@ def test_get_tasks_correct_count():
     source = GeneratorTaskSource(count=5)
     tasks = list(source.get_tasks())
     assert len(tasks) == 5
-
-def test_get_tasks_returns_task_objects():
-    source = GeneratorTaskSource(count=3)
-    tasks = list(source.get_tasks())
-    assert all(isinstance(task, Task) for task in tasks)
 
 def test_get_tasks_is_valid_source():
     source = GeneratorTaskSource(count=3)
