@@ -1,20 +1,29 @@
-from src.power import power_function
-from src.constants import SAMPLE_CONSTANT
+"""Демонстрация платформы обработки задач"""
+
+from .contracts.protocol import validate_source
+from .sources.generator_source import GeneratorTaskSource, create_generator_source
 
 
 def main() -> None:
-    """
-    Обязательнная составляющая программ, которые сдаются. Является точкой входа в приложение
-    :return: Данная функция ничего не возвращает
-    """
+    print("Платформа обработки задач\n")
 
-    target, degree = map(int, input("Введите два числа разделенные пробелом: ").split(" "))
+    # Создание источника
+    source = GeneratorTaskSource(count=5, payload_template="task")
 
-    result = power_function(target=target, power=degree)
+    # Проверка контракта
+    print(f"Контракт соблюдён: {validate_source(source)}")
 
-    print(result)
+    # Получение и вывод задач
+    print("\nЗадачи:")
+    for task in source.get_tasks():
+        print(f"  {task.id}: {task.payload}")
 
-    print(SAMPLE_CONSTANT)
+    # Фабрика
+    print("\ndict payload:")
+    factory_source = create_generator_source(count=3, payload_type="dict")
+    for task in factory_source.get_tasks():
+        print(f"  {task.id}: {task.payload}")
+
 
 if __name__ == "__main__":
     main()
