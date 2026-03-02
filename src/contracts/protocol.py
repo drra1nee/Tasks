@@ -14,7 +14,7 @@ class TaskSource(Protocol):
         ...
 
 def validate_source(source: object) -> bool:
-    """Проверить что источник соблюдает контракт"""
+    """Проверяет что источник соблюдает контракт"""
     if not isinstance(source, TaskSource):
         raise TypeError(f"Объект {type(source).__name__} не реализует TaskSource")
     else:
