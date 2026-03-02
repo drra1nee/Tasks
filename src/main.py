@@ -16,13 +16,10 @@ def main():
     print("\nЗадачи:")
     for task in source.get_tasks():
         print(f"  {task.id}: {task.payload}")
-
-    # Фабрика
     print("\ndict payload:")
-    factory_source = create_generator_source(count=3, payload_type="dict")
-    for task in factory_source.get_tasks():
+    sources = create_generator_source(count=3, payload_type="dict")
+    for task in sources.get_tasks():
         print(f"  {task.id}: {task.payload}")
-
 
 if __name__ == "__main__":
     main()
