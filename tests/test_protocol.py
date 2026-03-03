@@ -14,9 +14,6 @@ class InvalidSource:
     def fetch_tasks(self) -> Iterator[Task]:
         yield Task(id="invalid_1")
 
-def test_task_source_is_runtime_checkable():
-    assert getattr(TaskSource, "_is_runtime_protocol", False)
-
 def test_generator_source_is_task_source():
     source = GeneratorTaskSource(count=3)
     assert isinstance(source, TaskSource)
