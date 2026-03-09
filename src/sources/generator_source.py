@@ -8,10 +8,7 @@ class GeneratorTaskSource:
     """Генератор задач для тестирования и демонстрации"""
 
     def __init__(self, count: int = 10, payload_template: Any = "default_payload") -> None:
-        """Инициализирует генератор задач
-        count: количество задач для генерации
-        payload_template: шаблон для payload
-        """
+        """Инициализирует генератор задач"""
         if count < 0:
             raise ValueError(f"count должен быть неотрицательным: {count}")
         self.count = count
