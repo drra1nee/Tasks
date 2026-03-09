@@ -13,15 +13,15 @@ class APITaskSource:
     def _get_default_tasks(self) -> list[dict]:
         """Возвращает данные задач по умолчанию"""
         return [
-            {"id": "api_task_1", "payload": {"action": "notify", "user_id": 1}},
-            {"id": "api_task_2", "payload": {"action": "process", "order_id": 67}},
-            {"id": "api_task_3", "payload": {"action": "check", "resource": "db"}},
+            {"action": "notify", "user_id": 1},
+            {"action": "process", "order_id": 67},
+            {"action": "check", "resource": "db"},
         ]
 
     def get_tasks(self) -> Iterator[Task]:
         """Генерирует итератор задач из API-заглушки"""
         for task_data in self._tasks_data:
-            yield Task(id=task_data["id"], payload=task_data.get("payload"))
+            yield Task(payload=task_data)
 
     def refresh(self) -> None:
         """Имитирует обновление данных из API"""
@@ -29,8 +29,5 @@ class APITaskSource:
 
 def create_api_source(tasks_count: int = 3) -> APITaskSource:
     """Функция для создания API-заглушки"""
-    tasks_data = [
-        {"id": f"api_task_{i + 1}", "payload": {"action": "job", "index": i}}
-        for i in range(tasks_count)
-    ]
+    tasks_data = [{"action": "job", "index": i} for i in range(tasks_count)]
     return APITaskSource(tasks_data=tasks_data)

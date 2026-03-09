@@ -6,17 +6,14 @@ def test_create_api_source_default():
     source = APITaskSource()
     tasks = list(source.get_tasks())
     assert len(tasks) == 3
-    assert tasks[0].id == "api_task_1"
+    assert tasks[0].id == "task_1"
 
 def test_create_api_source_custom_data():
-    custom_data = [
-        {"id": "custom_1", "payload": "404"},
-        {"id": "custom_2", "payload": "67"},
-    ]
+    custom_data = [{"action": "404"}, {"action": "67"},]
     source = APITaskSource(tasks_data=custom_data)
     tasks = list(source.get_tasks())
     assert len(tasks) == 2
-    assert tasks[0].payload == "404"
+    assert tasks[0].payload == {"action": "404"}
 
 def test_api_source_implements_contract():
     source = APITaskSource()
@@ -29,7 +26,7 @@ def test_create_api_source():
     assert len(tasks) == 5
 
 def test_api_source_refresh():
-    custom_data = [{"id": "temp", "payload": "temp"}]
+    custom_data = [{"payload": "temp"}]
     source = APITaskSource(tasks_data=custom_data)
     assert len(list(source.get_tasks())) == 1
     source.refresh()
