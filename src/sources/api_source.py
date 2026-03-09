@@ -1,7 +1,7 @@
 """Модуль API-заглушки"""
+
 from typing import Iterator
 from ..models.task import Task
-
 
 class APITaskSource:
     """API-заглушка для имитации внешнего источника задач"""
@@ -26,7 +26,6 @@ class APITaskSource:
     def refresh(self) -> None:
         """Имитирует обновление данных из API"""
         self._tasks_data = self._get_default_tasks()
-
 
 def create_api_source(tasks_count: int = 3) -> APITaskSource:
     """Функция для создания API-заглушки"""

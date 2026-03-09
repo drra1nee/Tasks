@@ -32,7 +32,6 @@ class GeneratorTaskSource:
             return f"{self.payload_template}_{index}"
 
 
-
 def create_generator_source(count: int = 10,payload_type: str = "string") -> GeneratorTaskSource:
     """Функция для создания генератора"""
     templates = {
