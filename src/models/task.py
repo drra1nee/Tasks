@@ -1,25 +1,22 @@
 """Модель задачи"""
 
-from dataclasses import dataclass, field
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Optional
 
 _task_counter = 0
-
-def _generate_id():
-    """Генерирует уникальный код задачи"""
-    global _task_counter
-    _task_counter += 1
-    return f"task_{_task_counter}"
 
 @dataclass
 class Task:
     """Задача платформы обработки"""
-    id: str = field(default_factory=_generate_id)
-    payload: Any = None
     _task_counter = 0
+    id: Optional[str] = None
+    payload: Any = None
 
     def __post_init__(self):
-        """Проверка после создания задачи"""
+        """Проверка и генерация ID после создания экземпляра"""
+        if self.id is None:
+            self.id = self._generate_id()
+
         if not self.id:
             raise ValueError("Идентификатор задачи не может быть пустым")
 
