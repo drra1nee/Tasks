@@ -16,6 +16,7 @@ class Task:
     """Задача платформы обработки"""
     id: str = field(default_factory=_generate_id)
     payload: Any = None
+    _task_counter = 0
 
     def __post_init__(self):
         """Проверка после создания задачи"""
@@ -35,6 +36,12 @@ class Task:
     def to_dict(self) -> dict:
         """Превращает задачу в словарь"""
         return {"id": self.id, "payload": self.payload}
+
+    @classmethod
+    def _generate_id(cls) -> str:
+        """Генерирует уникальный код задачи"""
+        cls._task_counter += 1
+        return f"task_{cls._task_counter}"
 
     @classmethod
     def from_dict(cls, data: dict) -> "Task":
